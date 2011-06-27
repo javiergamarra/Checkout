@@ -32,33 +32,33 @@ public class Checkout {
 		if (prizes.containsKey(element)) {
 			total += prizes.get(element);
 			count.put(element, count.get(element) + 1);
-			aplicarDescuentos(element);
+			applyDiscounts(element);
 			if (isApple(element)) {
-				aplicarDescuentoManzanas();
+				applyApplesDiscount();
 			}
-			aplicarDescuentoFrutas();
+			applyFruitDiscount();
 		}
 	}
 
-	private void aplicarDescuentoManzanas() {
-		if (cuentaManzanas() % 4 == 0) {
+	private void applyApplesDiscount() {
+		if (countApples() % 4 == 0) {
 			total -= 100;
 		}
 	}
 
-	private void aplicarDescuentoFrutas() {
-		if (frutasTotales() % 5 == 0) {
+	private void applyFruitDiscount() {
+		if (countFruits() % 5 == 0) {
 			total -= 200;
 		}
 	}
 
-	private void aplicarDescuentos(String element) {
+	private void applyDiscounts(String element) {
 		if (count.get(element) % discounts.get(element)[0] == 0) {
 			total -= discounts.get(element)[1];
 		}
 	}
 
-	private Integer cuentaManzanas() {
+	private Integer countApples() {
 		Integer totalFruits = 0;
 		for (String key : count.keySet()) {
 			if (isApple(key)) {
@@ -68,7 +68,7 @@ public class Checkout {
 		return totalFruits;
 	}
 
-	private Integer frutasTotales() {
+	private Integer countFruits() {
 		Integer totalFruits = 0;
 		for (String key : count.keySet()) {
 			totalFruits += count.get(key);
